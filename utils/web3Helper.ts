@@ -1,8 +1,12 @@
 import { ExternalProvider } from '@ethersproject/providers'
 
-import { Chain } from '@/constants/chains'
+import { Chain, DEFAULT_CHAIN_ID, getChain } from '@/constants/chains'
 
 import { Web3Provider } from '@ethersproject/providers'
+
+import { getAddress } from '@ethersproject/address'
+
+const defaultChain = getChain(DEFAULT_CHAIN_ID)
 
 export function getLibrary(provider: any): Web3Provider {
   const library = new Web3Provider(
@@ -15,6 +19,20 @@ export function getLibrary(provider: any): Web3Provider {
   )
 
   return library
+}
+
+export async function switchToDefaultChain() {
+  try {
+    const formattedChainId = `0x${defaultChain.chainId.toString(16)}`
+    await window['ethereum'].request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: formattedChainId }],
+    })
+  } catch (error) {
+    if (error.code === 4902 || error.code === -32603) {
+      await addChain()
+    }
+  }
 }
 
 export async function switchChain(
@@ -47,5 +65,33 @@ export async function switchChain(
         })
       } catch (addError) {}
     }
+  }
+}
+
+async function addChain() {
+  try {
+    await window['ethereum'].request({
+      method: 'wallet_addEthereumChain',
+      params: [
+        {
+          ...defaultChain,
+        },
+      ],
+    })
+  } catch (addError) {
+    console.error(addError)
+  }
+}
+
+export function shortenAddress(
+  address: string | null | undefined,
+  chars = 4,
+): string {
+  try {
+    if (!address) return ''
+    const parsed = getAddress(address)
+    return `${parsed.substring(0, chars + 2)}...${parsed.substring(42 - chars)}`
+  } catch (error) {
+    throw Error(`Invalid 'address' parameter '${address}'.`)
   }
 }

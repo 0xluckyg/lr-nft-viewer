@@ -1,6 +1,7 @@
 import { useTheme, Box, Flex, Image, Text, Spacer } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import WalletConnectButton from "../ui/WalletConnectButton";
 
 export function NavBar() {
   const { colors } = useTheme();
@@ -40,7 +41,7 @@ export function NavBar() {
       <Spacer flex={1} />
       <Flex
         alignItems="center"
-        width="180px"
+        width="300px"
         justifyContent="space-between"
         marginRight="30px"
         left="60%"
@@ -53,6 +54,7 @@ export function NavBar() {
         <Text as="span" onClick={() => {}}>
           Collection
         </Text>
+        <WalletConnectButton />
       </Flex>
     </Flex>
   );

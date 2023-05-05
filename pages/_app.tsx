@@ -5,8 +5,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Web3Manager } from "@/providers/Web3Manager";
 import { extendTheme } from "@chakra-ui/react";
+import { ModalProvider } from "@/hooks/useModal";
 import Head from "next/head";
-
 //Chakra UI setup
 const theme = extendTheme({
   colors: {
@@ -17,9 +17,9 @@ const theme = extendTheme({
     },
     white: "#ffffff",
     black: {
-      50: "#808191",
+      50: "#D2D3D4",
       100: "#A5A6A9",
-      300: "#D2D3D4",
+      300: "#808191",
       500: "#11142D",
       700: "#1B1D21",
       900: "#000000",
@@ -62,7 +62,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={client}>
           <Web3ReactProvider getLibrary={getLibrary}>
             <Web3Manager>
-              <Component {...pageProps} />
+              <ModalProvider>
+                <Component {...pageProps} />
+              </ModalProvider>
             </Web3Manager>
           </Web3ReactProvider>
         </QueryClientProvider>
