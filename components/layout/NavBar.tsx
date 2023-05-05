@@ -15,6 +15,8 @@ export function NavBar() {
       align="center"
       position="sticky"
       padding="0 36px"
+      top="0"
+      bg={colors.white}
       zIndex={1}
     >
       <Link href="/" passHref>

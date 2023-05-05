@@ -1,6 +1,10 @@
 import { Button, ButtonProps, useTheme } from "@chakra-ui/react";
 
-export default function CustomButton(props: ButtonProps) {
+interface CustomButtonProps extends ButtonProps {
+  onClick?: () => void;
+}
+
+export default function CustomButton(props: CustomButtonProps) {
   const { colors } = useTheme();
 
   return (
@@ -11,14 +15,13 @@ export default function CustomButton(props: ButtonProps) {
       _active={{ bg: `${colors.primary.light}` }}
       _focus={{
         outline: "none",
-        // boxShadow: `0 0 0 3px ${colors.primary.dark}`,
       }}
       {...props}
     />
   );
 }
 
-export function TextButton(props: ButtonProps) {
+export function TextButton(props: CustomButtonProps) {
   return (
     <Button
       variant="ghost"
