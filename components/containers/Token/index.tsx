@@ -11,6 +11,8 @@ import {
   VStack,
   HStack,
   AspectRatio,
+  Skeleton,
+  SkeletonText,
 } from "@chakra-ui/react";
 import Button from "@/components/ui/Buttons";
 import { NavBar } from "../../layout/NavBar";
@@ -18,11 +20,11 @@ import { Path } from "@/utils/urlHelper";
 import Orders from "./Orders";
 import TokenDetail from "./TokenDetail";
 import Properties from "./Properties";
-import { Token } from "@/types/Token";
 import { FetchTokenParams, useFetchToken } from "@/api/useFetchToken";
 
 export default function TokenPage() {
   const { collectionAddress, tokenId } = Path.getAll();
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const {
     data: token,
@@ -50,11 +52,14 @@ export default function TokenPage() {
               maxW="1000px"
             >
               <AspectRatio ratio={1}>
-                <Image
-                  src={token?.imageURI || ""}
-                  alt={token?.name}
-                  objectFit="cover"
-                />
+                <Skeleton isLoaded={imageLoaded}>
+                  <Image
+                    src={token?.imageURI || ""}
+                    alt={token?.name}
+                    objectFit="cover"
+                    onLoad={() => setImageLoaded(true)}
+                  />
+                </Skeleton>
               </AspectRatio>
             </Box>
             <Properties />
@@ -64,12 +69,36 @@ export default function TokenPage() {
           <GridItem>
             <Flex direction="column" height="100%" gap={30} p={6}>
               <VStack alignItems="start" spacing={1}>
-                <Text fontSize="3xl" fontWeight="bold">
-                  {token?.name}
-                </Text>
-                {token?.description && <Text>{token?.description}</Text>}
-                {collectionAddress && <Text>{collectionAddress}</Text>}
-                {tokenId && <Text>TokenId: {tokenId}</Text>}
+                <SkeletonText
+                  skeletonHeight={10}
+                  isLoaded={!isTokenLoading && !isTokenError}
+                  noOfLines={1}
+                >
+                  <Text fontSize="3xl" fontWeight="bold">
+                    {token?.name}
+                  </Text>
+                </SkeletonText>
+                <SkeletonText
+                  skeletonHeight={5}
+                  isLoaded={!isTokenLoading && !isTokenError}
+                  noOfLines={1}
+                >
+                  {token?.description && <Text>{token?.description}</Text>}
+                </SkeletonText>
+                <SkeletonText
+                  skeletonHeight={5}
+                  isLoaded={!isTokenLoading && !isTokenError}
+                  noOfLines={1}
+                >
+                  {collectionAddress && <Text>{collectionAddress}</Text>}
+                </SkeletonText>
+                <SkeletonText
+                  skeletonHeight={5}
+                  isLoaded={!isTokenLoading && !isTokenError}
+                  noOfLines={1}
+                >
+                  {tokenId && <Text>TokenId: {tokenId}</Text>}
+                </SkeletonText>
               </VStack>
 
               <HStack>
