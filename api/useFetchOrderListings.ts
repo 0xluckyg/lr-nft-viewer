@@ -3,24 +3,25 @@ import { looksrareClient } from './apiClients'
 import { Token } from '@/types/Token'
 
 export type FetchOrderListingsParams = {
-  pageId: number
+  cursor: string
   collectionAddress: string
 }
 
 const QUERY_KEY = ['OrderListings']
+const limit = 30
 
 const fetchOrderListings = async (
   params: FetchOrderListingsParams,
 ): Promise<Array<Token>> => {
+  const { cursor, collectionAddress } = params
   const { data } = await looksrareClient.get(
-    `events?collection=${params.collectionAddress}&type=LIST`,
+    `events?collection=${collectionAddress}&type=LIST&pagination%5Bfirst%5D=${limit}&pagination%5Bcursor%5D=${cursor}`,
   )
-  const tokens = data.data.map((orderListing: { token: Token }) => {
+  const tokens = data.data.map((orderListing: { id: string; token: Token }) => {
     const {
       collectionAddress,
       description,
       name,
-      id,
       imageURI,
       tokenId,
       tokenURI,
@@ -29,10 +30,10 @@ const fetchOrderListings = async (
       collectionAddress,
       description,
       name,
-      id,
       imageURI,
       tokenId,
       tokenURI,
+      eventId: orderListing.id,
     }
   })
 

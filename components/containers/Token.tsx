@@ -18,7 +18,6 @@ import { NavBar } from "../layout/NavBar";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
 interface NFT {
-  id: string;
   tokenId: number;
   name: string;
   imageUrl: string;
@@ -27,7 +26,6 @@ interface NFT {
 }
 
 const nft: NFT = {
-  id: "1",
   tokenId: 1,
   name: "Sample NFT",
   imageUrl: "https://picsum.photos/seed/1/200/300",

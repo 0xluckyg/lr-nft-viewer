@@ -2,7 +2,7 @@ export type Token = {
   collectionAddress: string
   description?: string | null
   name?: string
-  id: number
+  eventId: string
   imageURI?: string | null
   tokenId: string
   tokenURI?: null
