@@ -1,19 +1,22 @@
 // pages/nft.tsx
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Image,
   Flex,
   Text,
-  Button,
   Grid,
   GridItem,
   Container,
   VStack,
   HStack,
   AspectRatio,
+  Collapse,
+  IconButton,
 } from "@chakra-ui/react";
+import Button from "@/components/ui/Buttons";
 import { NavBar } from "../layout/NavBar";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 interface NFT {
   id: string;
@@ -34,6 +37,22 @@ const nft: NFT = {
 };
 
 export default function NFTPage() {
+  const [showProperties, setShowProperties] = useState(false);
+  const [showTokenDetail, setShowTokenDetail] = useState(false);
+  const [showOrderDetail, setShowOrderDetail] = useState(false);
+
+  const handlePropertyToggle = () => {
+    setShowProperties(!showProperties);
+  };
+
+  const handleTokenDetailToggle = () => {
+    setShowTokenDetail(!showTokenDetail);
+  };
+
+  const handleOrderDetailToggle = () => {
+    setShowOrderDetail(!showOrderDetail);
+  };
+
   return (
     <>
       <NavBar />
@@ -54,7 +73,58 @@ export default function NFTPage() {
                 <Image src={nft.imageUrl} alt={nft.name} objectFit="cover" />
               </AspectRatio>
             </Box>
+            <Box
+              bgColor="white"
+              boxShadow="xl"
+              borderRadius="lg"
+              mt={4}
+              p={4}
+              onClick={handlePropertyToggle}
+              cursor="pointer"
+            >
+              <HStack spacing={4}>
+                <Text fontWeight="bold">Properties</Text>
+                <ChevronDownIcon
+                  boxSize={6}
+                  transform={showProperties ? "rotate(180deg)" : "rotate(0)"}
+                  transition="transform 0.3s ease-in-out"
+                />
+              </HStack>
+              <Collapse in={showProperties}>
+                <VStack alignItems="start" mt={4} spacing={2}>
+                  <Text>Property 1: Value 1</Text>
+                  <Text>Property 2: Value 2</Text>
+                  <Text>Property 3: Value 3</Text>
+                </VStack>
+              </Collapse>
+            </Box>
+            <Box
+              bgColor="white"
+              boxShadow="xl"
+              borderRadius="lg"
+              mt={4}
+              p={4}
+              onClick={handleTokenDetailToggle}
+              cursor="pointer"
+            >
+              <HStack spacing={4}>
+                <Text fontWeight="bold">Token Detail</Text>
+                <ChevronDownIcon
+                  boxSize={6}
+                  transform={showTokenDetail ? "rotate(180deg)" : "rotate(0)"}
+                  transition="transform 0.3s ease-in-out"
+                />
+              </HStack>
+              <Collapse in={showTokenDetail}>
+                <VStack alignItems="start" mt={4} spacing={2}>
+                  <Text>Property 1: Value 1</Text>
+                  <Text>Property 2: Value 2</Text>
+                  <Text>Property 3: Value 3</Text>
+                </VStack>
+              </Collapse>
+            </Box>
           </GridItem>
+
           <GridItem>
             <Flex direction="column" height="100%" gap={30} p={6}>
               <VStack alignItems="start" spacing={4}>
@@ -68,10 +138,34 @@ export default function NFTPage() {
                 <Text fontSize="2xl" fontWeight="bold" mr={4}>
                   {nft.price}
                 </Text>
-                <Button colorScheme="blue" size="md">
-                  Buy Now
-                </Button>
+                <Button>Buy Now</Button>
               </HStack>
+
+              <Box
+                bgColor="white"
+                boxShadow="xl"
+                borderRadius="lg"
+                mt={4}
+                p={4}
+                onClick={handleOrderDetailToggle}
+                cursor="pointer"
+              >
+                <HStack spacing={4}>
+                  <Text fontWeight="bold">Ask Orders</Text>
+                  <ChevronDownIcon
+                    boxSize={6}
+                    transform={showOrderDetail ? "rotate(180deg)" : "rotate(0)"}
+                    transition="transform 0.3s ease-in-out"
+                  />
+                </HStack>
+                <Collapse in={showOrderDetail}>
+                  <VStack alignItems="start" mt={4} spacing={2}>
+                    <Text>Property 1: Value 1</Text>
+                    <Text>Property 2: Value 2</Text>
+                    <Text>Property 3: Value 3</Text>
+                  </VStack>
+                </Collapse>
+              </Box>
             </Flex>
           </GridItem>
         </Grid>
