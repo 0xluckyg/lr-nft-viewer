@@ -33,8 +33,6 @@ export default function TokenPage() {
     tokenId,
   } as FetchTokenParams);
 
-  console.log("TT", token);
-
   return (
     <>
       <NavBar />

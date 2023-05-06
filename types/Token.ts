@@ -16,6 +16,7 @@ export type Token = {
   eventId?: string
   imageURI?: string | null
   tokenURI?: null
+  attributes?: Array<Attribute>
 }
 
 export type TokenDetail = {
@@ -24,7 +25,7 @@ export type TokenDetail = {
   tokenStandard: string
 }
 
-export type Property = {
+export type Attribute = {
   count: number
   displayType: string
   traitType: string
