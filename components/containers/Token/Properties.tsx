@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Text,
-  VStack,
-  HStack,
-  Collapse,
-  Grid,
-  Spacer,
-  Skeleton,
-} from "@chakra-ui/react";
+import { Box, Text, HStack, Collapse, Grid, Skeleton } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Path } from "@/utils/urlHelper";
 import { FetchTokenParams, useFetchToken } from "@/api/useFetchToken";
@@ -26,7 +17,6 @@ export default function Properties() {
     collectionAddress,
     tokenId,
   } as FetchTokenParams);
-  console.log("TOL ", token);
 
   const handlePropertyToggle = () => {
     setShowProperties(!showProperties);
@@ -38,7 +28,7 @@ export default function Properties() {
       boxShadow="xl"
       borderRadius="lg"
       mt={4}
-      p={4}
+      p={6}
       onClick={handlePropertyToggle}
       cursor="pointer"
     >

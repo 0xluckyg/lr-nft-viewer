@@ -11,6 +11,7 @@ export type TokenCard = {
 export type Token = {
   collectionAddress: string
   tokenId: string
+  tokenStandard: string
   description?: string | null
   name?: string
   eventId?: string

@@ -17,7 +17,7 @@ export default function Orders() {
       boxShadow="xl"
       borderRadius="lg"
       mt={4}
-      p={4}
+      p={6}
       onClick={handleOrderDetailToggle}
       cursor="pointer"
     >
