@@ -2,6 +2,7 @@ import { useTheme, Box, Flex, Image, Text, Spacer } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import WalletConnectButton from "../ui/WalletConnectButton";
+import { defaultCollectionAddress } from "@/constants/defaultCollectionAddress";
 
 export function NavBar() {
   const { colors } = useTheme();
@@ -50,10 +51,15 @@ export function NavBar() {
         transition="all 500ms ease"
         cursor="pointer"
       >
-        <Text as="span" onClick={() => {}}>
+        <Text
+          as="span"
+          onClick={() => {
+            push(`/`);
+          }}
+        >
           Home
         </Text>
-        <Text as="span" onClick={() => {}}>
+        <Text as="span" onClick={() => push(`/${defaultCollectionAddress}`)}>
           Collection
         </Text>
         <WalletConnectButton />
