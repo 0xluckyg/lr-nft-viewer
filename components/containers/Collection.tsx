@@ -14,6 +14,7 @@ import { Path } from "@/utils/urlHelper";
 
 type NFT = {
   id: string;
+  tokenId: number;
   name: string;
   description: string;
   image: string;
@@ -26,6 +27,7 @@ const nfts: NFT[] = [];
 for (let i = 0; i < 20; i++) {
   const nft: NFT = {
     id: i.toString(),
+    tokenId: i,
     name: `NFT ${i}`,
     description: "This is a cool NFT",
     image: `https://picsum.photos/seed/${i}/200/300`,
@@ -36,17 +38,12 @@ for (let i = 0; i < 20; i++) {
   nfts.push(nft);
 }
 
-interface Props {
-  nfts: NFT[];
-}
-
 export default function Collection() {
   const { push } = useRouter();
-  const id = Path.get("id");
+  const { collectionAddress } = Path.getAll();
 
-  function goToToken() {
-    console.log("WT");
-    push("/id/tokenId");
+  function goToToken(tokenId: number) {
+    push(`/${collectionAddress}/${tokenId}`);
   }
 
   return (
@@ -64,12 +61,18 @@ export default function Collection() {
               key={nft.id}
               transition="transform 200ms ease"
               cursor="pointer"
-              onClick={goToToken}
+              onClick={() => goToToken(nft.tokenId)}
               _hover={{
                 transform: "translateY(-10px)",
               }}
             >
-              <Image src={nft.image} alt={nft.name} w="100%" h="200px" />
+              <Image
+                src={nft.image}
+                alt={nft.name}
+                objectFit="cover"
+                w="100%"
+                h="200px"
+              />
               <Box p={4}>
                 <Heading size="md" mb={2}>
                   {nft.name}
@@ -77,8 +80,8 @@ export default function Collection() {
                 <Text fontSize="sm" mb={4}>
                   {nft.description}
                 </Text>
-                <Button as={Link} onClick={goToToken}>
-                  View on OpenSea
+                <Button as={Link} onClick={() => goToToken(nft.tokenId)}>
+                  View NFT Detail
                 </Button>
               </Box>
             </Box>
