@@ -2,9 +2,9 @@ import { Box, Heading, Image, Link, Skeleton, Text } from "@chakra-ui/react";
 import Button from "@/components/ui/Buttons";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Token } from "@/types/Token";
+import { TokenCard } from "@/types/Token";
 
-export default function TokenBox({ token }: { token: Token }) {
+export default function TokenBox({ token }: { token: TokenCard }) {
   const { push } = useRouter();
 
   function goToToken(collectionAddress: string, tokenId: string) {

@@ -22,7 +22,7 @@ export default function Properties() {
       cursor="pointer"
     >
       <HStack spacing={4}>
-        <Text fontWeight="bold">Ask Orders</Text>
+        <Text fontWeight="bold">Properties</Text>
         <ChevronDownIcon
           boxSize={6}
           transform={showProperties ? "rotate(180deg)" : "rotate(0)"}

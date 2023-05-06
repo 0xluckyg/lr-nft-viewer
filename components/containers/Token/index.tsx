@@ -1,4 +1,4 @@
-// pages/nft.tsx
+// pages/token.tsx
 import React, { useState } from "react";
 import {
   Box,
@@ -18,25 +18,22 @@ import { Path } from "@/utils/urlHelper";
 import Orders from "./Orders";
 import TokenDetail from "./TokenDetail";
 import Properties from "./Properties";
+import { Token } from "@/types/Token";
+import { FetchTokenParams, useFetchToken } from "@/api/useFetchToken";
 
-interface NFT {
-  tokenId: number;
-  name: string;
-  imageUrl: string;
-  description: string;
-  price: string;
-}
-
-const nft: NFT = {
-  tokenId: 1,
-  name: "Sample NFT",
-  imageUrl: "https://picsum.photos/seed/1/200/300",
-  description: "This is a sample NFT description.",
-  price: "1.5 ETH",
-};
-
-export default function NFTPage() {
+export default function TokenPage() {
   const { collectionAddress, tokenId } = Path.getAll();
+
+  const {
+    data: token,
+    isLoading: isTokenLoading,
+    isError: isTokenError,
+  } = useFetchToken({
+    collectionAddress,
+    tokenId,
+  } as FetchTokenParams);
+
+  console.log("TT", token);
 
   return (
     <>
@@ -55,7 +52,11 @@ export default function NFTPage() {
               maxW="1000px"
             >
               <AspectRatio ratio={1}>
-                <Image src={nft.imageUrl} alt={nft.name} objectFit="cover" />
+                <Image
+                  src={token?.imageURI || ""}
+                  alt={token?.name}
+                  objectFit="cover"
+                />
               </AspectRatio>
             </Box>
             <Properties />
@@ -64,16 +65,18 @@ export default function NFTPage() {
 
           <GridItem>
             <Flex direction="column" height="100%" gap={30} p={6}>
-              <VStack alignItems="start" spacing={4}>
-                <Text fontSize="2xl" fontWeight="bold">
-                  {nft.name}
+              <VStack alignItems="start" spacing={1}>
+                <Text fontSize="3xl" fontWeight="bold">
+                  {token?.name}
                 </Text>
-                <Text>{nft.description}</Text>
+                {token?.description && <Text>{token?.description}</Text>}
+                {collectionAddress && <Text>{collectionAddress}</Text>}
+                {tokenId && <Text>TokenId: {tokenId}</Text>}
               </VStack>
 
               <HStack>
                 <Text fontSize="2xl" fontWeight="bold" mr={4}>
-                  {nft.price}
+                  You own this NFT!
                 </Text>
                 <Button>Buy Now</Button>
               </HStack>

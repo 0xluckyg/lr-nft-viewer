@@ -22,7 +22,7 @@ export default function TokenDetail() {
       cursor="pointer"
     >
       <HStack spacing={4}>
-        <Text fontWeight="bold">Ask Orders</Text>
+        <Text fontWeight="bold">Token Detail</Text>
         <ChevronDownIcon
           boxSize={6}
           transform={showTokenDetail ? "rotate(180deg)" : "rotate(0)"}
