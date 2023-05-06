@@ -12,7 +12,6 @@ import {
   HStack,
   AspectRatio,
   Collapse,
-  IconButton,
 } from "@chakra-ui/react";
 import Button from "@/components/ui/Buttons";
 import { NavBar } from "../layout/NavBar";
@@ -56,9 +55,9 @@ export default function NFTPage() {
   return (
     <>
       <NavBar />
-      <Container maxW="container.lg" py={10}>
+      <Container maxW="container.xl" py={10}>
         <Grid
-          templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+          templateColumns={{ base: "repeat(1, 1fr)", md: "3fr 4fr" }}
           gap={6}
         >
           <GridItem>

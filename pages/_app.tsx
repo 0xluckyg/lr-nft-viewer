@@ -42,10 +42,9 @@ const theme = extendTheme({
 const client = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnMount: true,
-      refetchOnReconnect: true,
-      refetchInterval: false,
-      refetchOnWindowFocus: true,
+      refetchOnWindowFocus: false,
+      retry: false,
+      staleTime: 30000,
     },
   },
 });
