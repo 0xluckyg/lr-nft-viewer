@@ -9,12 +9,10 @@ import {
   GridItem,
   Container,
   VStack,
-  HStack,
   AspectRatio,
   Skeleton,
   SkeletonText,
 } from "@chakra-ui/react";
-import Button from "@/components/ui/Buttons";
 import { NavBar } from "../../layout/NavBar";
 import { Path } from "@/utils/urlHelper";
 import Orders from "./Orders";
@@ -68,15 +66,16 @@ export default function TokenPage() {
           </GridItem>
 
           <GridItem>
-            <Flex direction="column" height="100%" gap={30} p={6}>
-              <VStack alignItems="start" spacing={1}>
+            <Flex direction="column" height="100%" gap={3} p={6}>
+              <VStack alignItems="start">
                 <SkeletonText
                   skeletonHeight={8}
+                  minW={300}
                   isLoaded={!isTokenLoading && !isTokenError}
                   noOfLines={1}
                 >
                   <Text fontSize="3xl" fontWeight="bold">
-                    {token?.name}
+                    {token?.name || "--"}
                   </Text>
                 </SkeletonText>
                 <SkeletonText
@@ -91,14 +90,18 @@ export default function TokenPage() {
                   isLoaded={!isTokenLoading && !isTokenError}
                   noOfLines={1}
                 >
-                  <Text>{collectionAddress}</Text>{" "}
+                  <Text>
+                    <b>Address:</b> {collectionAddress}
+                  </Text>{" "}
                 </SkeletonText>
                 <SkeletonText
                   skeletonHeight={5}
                   isLoaded={!isTokenLoading && !isTokenError}
                   noOfLines={1}
                 >
-                  <Text>TokenId: {tokenId}</Text>{" "}
+                  <Text>
+                    <b>TokenId:</b> {tokenId}
+                  </Text>{" "}
                 </SkeletonText>
               </VStack>
               <DisplayOwnership />

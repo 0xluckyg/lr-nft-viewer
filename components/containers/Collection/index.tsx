@@ -32,7 +32,7 @@ export default function Collection() {
                 .map((_, index) => <TokenBoxSkeleton key={index} />)
             : tokens &&
               tokens.map((token) => {
-                return <TokenBox token={token} />;
+                return <TokenBox key={token.tokenId} token={token} />;
               })}
         </Grid>
       </Container>

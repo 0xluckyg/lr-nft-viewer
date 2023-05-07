@@ -2,7 +2,7 @@ import Head from "next/head";
 import chakraTheme from "@chakra-ui/theme";
 import { NavBar } from "@/components/layout/NavBar";
 
-const { Button } = chakraTheme.components;
+// 0xED5AF388653567Af2F388E6224dC7C4b3241C544/1562 Good example
 
 export default function Home() {
   return (
