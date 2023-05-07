@@ -12,10 +12,14 @@ import { Path } from "@/utils/urlHelper";
 import Button from "@/components/ui/Buttons";
 import {
   FetchAskOrdersParams,
+  MakerOrder,
   useFetchAskOrders,
 } from "@/api/useFetchAskOrders";
 import { getTimeFromNow } from "@/utils/timeHelper";
-import { ethers } from "ethers";
+import { ContractReceipt, ethers } from "ethers";
+import { MutationError, useCreateTakeOrder } from "@/api/useCreateTakerOrder";
+import { useWeb3React } from "@web3-react/core";
+import useAppToast from "@/hooks/useToast";
 
 export default function Orders() {
   const { collectionAddress, tokenId } = Path.getAll();
@@ -47,24 +51,93 @@ export default function Orders() {
           "No ask price"
         ) : (
           askOrders?.map((order, index) => (
-            <React.Fragment key={order.id}>
-              <HStack width="100%" justifyContent="space-between">
-                <VStack alignItems="start" spacing={1}>
-                  <HStack spacing={1}>
-                    <Image src="/ethereum-logo.svg" boxSize="1.5em" />
-                    <Text>{ethers.formatEther(order.price)}</Text>
-                  </HStack>
-                  <Text fontSize="sm">
-                    Expiry: {getTimeFromNow(order.endTime)}
-                  </Text>
-                </VStack>
-                <Button onClick={() => {}}>Buy</Button>
-              </HStack>
-              {index < askOrders.length - 1 && <Divider />}
-            </React.Fragment>
+            <Order order={order} hasDivider={index < askOrders.length - 1} />
           ))
         )}
       </VStack>
     </Box>
+  );
+}
+
+// to test with cheap NFTs on mainnet,
+// use 0x7fAd74fe7Aae8980165B3cb1a00a794ddF2B3C49/532
+
+enum TakerOrderErrorCodeTypes {
+  ACTION_REJECTED = "ACTION_REJECTED",
+  INSUFFICIENT_FUNDS = "INSUFFICIENT_FUNDS",
+}
+
+function Order({
+  order,
+  hasDivider,
+}: {
+  order: MakerOrder;
+  hasDivider: boolean;
+}) {
+  const { account, library } = useWeb3React();
+  const showToast = useAppToast();
+
+  function getErrorMessage(code: string) {
+    switch (code) {
+      case TakerOrderErrorCodeTypes.ACTION_REJECTED: {
+        return "Buy cancelled";
+      }
+      case TakerOrderErrorCodeTypes.INSUFFICIENT_FUNDS: {
+        return "Your size is not size";
+      }
+      default: {
+        return "Please try again later";
+      }
+    }
+  }
+
+  const { mutate, isLoading: isCreateTakerOrderLoading } = useCreateTakeOrder({
+    id: order.id,
+    onSuccess: (data: ContractReceipt) => {
+      showToast({
+        colorScheme: "cyan",
+        title: "Successful",
+        description: "Trade success!",
+        status: "error",
+      });
+    },
+    onError: (error: MutationError) => {
+      showToast({
+        colorScheme: "pink",
+        title: "Error",
+        description: getErrorMessage(error.code),
+        status: "error",
+      });
+    },
+  });
+
+  function executeOrder(): void {
+    if (!account) return;
+    mutate({
+      makerOrder: order,
+      recipientAddress: account,
+      signer: library.getSigner(),
+    });
+  }
+  return (
+    <React.Fragment key={order.id}>
+      <HStack width="100%" justifyContent="space-between">
+        <VStack alignItems="start" spacing={1}>
+          <HStack spacing={1}>
+            <Image src="/ethereum-logo.svg" boxSize="1.5em" />
+            <Text>{ethers.utils.formatEther(order.price)}</Text>
+          </HStack>
+          <Text fontSize="sm">
+            Expiry: {getTimeFromNow(Number(order.endTime))}
+          </Text>
+        </VStack>
+        {account && (
+          <Button isLoading={isCreateTakerOrderLoading} onClick={executeOrder}>
+            Buy
+          </Button>
+        )}
+      </HStack>
+      {hasDivider && <Divider />}
+    </React.Fragment>
   );
 }

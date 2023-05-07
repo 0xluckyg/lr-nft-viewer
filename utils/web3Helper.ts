@@ -1,11 +1,16 @@
-import { ExternalProvider } from '@ethersproject/providers'
-
-import { Chain, DEFAULT_CHAIN_ID, getChain } from '@/constants/chains'
-
+import {
+  ExternalProvider,
+  StaticJsonRpcProvider,
+} from '@ethersproject/providers'
+import {
+  Chain,
+  DEFAULT_CHAIN_ID,
+  getChain,
+  getNetworkURI,
+} from '@/constants/chains'
 import { Web3Provider } from '@ethersproject/providers'
-
 import { getAddress } from '@ethersproject/address'
-import { AbstractProvider, ethers } from 'ethers'
+import { ethers } from 'ethers'
 
 const defaultChain = getChain(DEFAULT_CHAIN_ID)
 
@@ -97,7 +102,7 @@ export function shortenAddress(
   }
 }
 
-export function getProvider(chainId?: number): AbstractProvider {
+export function getProvider(chainId?: number) {
   const chainID = chainId || defaultChain.chainId
-  return ethers.getDefaultProvider(getChain(chainID).rpcUrls[0])
+  return new StaticJsonRpcProvider(getNetworkURI(chainID))
 }

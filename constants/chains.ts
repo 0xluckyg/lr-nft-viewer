@@ -58,6 +58,11 @@ export const isSupportedChain = (chainId: undefined | number | string) => {
   return chains[parseInt(chainId?.toString() || '1')] && true
 }
 
+export const getNetworkURI = (chainId?: number) => {
+  const chainID = chainId || parseInt(process.env.NEXT_PUBLIC_CHAIN_ID || '1')
+  return getChain(chainID).rpcUrls[0]
+}
+
 export const DEFAULT_CHAIN_ID = parseInt(
   process.env.NEXT_PUBLIC_CHAIN_ID || '1',
 )

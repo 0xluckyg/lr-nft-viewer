@@ -2,6 +2,8 @@ import { Button, ButtonProps, useTheme } from "@chakra-ui/react";
 
 interface CustomButtonProps extends ButtonProps {
   onClick?: () => void;
+  isLoading?: boolean;
+  disabled?: boolean;
 }
 
 export default function CustomButton(props: CustomButtonProps) {
