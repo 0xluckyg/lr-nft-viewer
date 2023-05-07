@@ -9,7 +9,7 @@ export type FetchTokenParams = {
 
 const QUERY_KEY = ['Token']
 
-const fetchToken = async (params: FetchTokenParams): Promise<Token> => {
+async function fetchToken(params: FetchTokenParams): Promise<Token> {
   const { data } = await looksrareClient.get(
     `v1/tokens?collection=${params.collectionAddress}&tokenId=${params.tokenId}`,
   )

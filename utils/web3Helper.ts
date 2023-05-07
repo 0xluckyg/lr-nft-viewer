@@ -5,6 +5,7 @@ import { Chain, DEFAULT_CHAIN_ID, getChain } from '@/constants/chains'
 import { Web3Provider } from '@ethersproject/providers'
 
 import { getAddress } from '@ethersproject/address'
+import { AbstractProvider, ethers } from 'ethers'
 
 const defaultChain = getChain(DEFAULT_CHAIN_ID)
 
@@ -94,4 +95,9 @@ export function shortenAddress(
   } catch (error) {
     throw Error(`Invalid 'address' parameter '${address}'.`)
   }
+}
+
+export function getProvider(chainId?: number): AbstractProvider {
+  const chainID = chainId || defaultChain.chainId
+  return ethers.getDefaultProvider(getChain(chainID).rpcUrls[0])
 }

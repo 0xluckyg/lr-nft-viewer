@@ -21,6 +21,7 @@ import Orders from "./Orders";
 import TokenDetail from "./TokenDetail";
 import Properties from "./Properties";
 import { FetchTokenParams, useFetchToken } from "@/api/useFetchToken";
+import DisplayOwnership from "./DisplayOwnership";
 
 export default function TokenPage() {
   const { collectionAddress, tokenId } = Path.getAll();
@@ -70,7 +71,7 @@ export default function TokenPage() {
             <Flex direction="column" height="100%" gap={30} p={6}>
               <VStack alignItems="start" spacing={1}>
                 <SkeletonText
-                  skeletonHeight={10}
+                  skeletonHeight={8}
                   isLoaded={!isTokenLoading && !isTokenError}
                   noOfLines={1}
                 >
@@ -83,30 +84,24 @@ export default function TokenPage() {
                   isLoaded={!isTokenLoading && !isTokenError}
                   noOfLines={1}
                 >
-                  {token?.description && <Text>{token?.description}</Text>}
+                  <Text>{token?.description}</Text>
                 </SkeletonText>
                 <SkeletonText
                   skeletonHeight={5}
                   isLoaded={!isTokenLoading && !isTokenError}
                   noOfLines={1}
                 >
-                  {collectionAddress && <Text>{collectionAddress}</Text>}
+                  <Text>{collectionAddress}</Text>{" "}
                 </SkeletonText>
                 <SkeletonText
                   skeletonHeight={5}
                   isLoaded={!isTokenLoading && !isTokenError}
                   noOfLines={1}
                 >
-                  {tokenId && <Text>TokenId: {tokenId}</Text>}
+                  <Text>TokenId: {tokenId}</Text>{" "}
                 </SkeletonText>
               </VStack>
-
-              <HStack>
-                <Text fontSize="2xl" fontWeight="bold" mr={4}>
-                  You own this NFT!
-                </Text>
-                <Button>Buy Now</Button>
-              </HStack>
+              <DisplayOwnership />
               <Orders />
             </Flex>
           </GridItem>
