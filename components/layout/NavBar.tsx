@@ -6,7 +6,7 @@ import { defaultCollectionAddress } from "@/constants/defaultCollectionAddress";
 
 export function NavBar() {
   const { colors } = useTheme();
-  const { asPath, push } = useRouter();
+  const { push } = useRouter();
 
   return (
     <Flex

@@ -46,12 +46,12 @@ export default function DisplayOwnership() {
       <CardInfoText
         label="My Address"
         value={shortenedAccount ? shortenedAccount : "--"}
-        isLoading={!account}
+        isLoading={isERC721OwnerLoading}
       />
       <CardInfoText
         label="Owner"
-        value={shortenedOwner ? shortenedOwner : "--"}
-        isLoading={isERC721OwnerLoading || isERC721OwnerError}
+        value={!isERC721OwnerError && shortenedOwner ? shortenedOwner : "--"}
+        isLoading={isERC721OwnerLoading}
       />
     </Box>
   );
