@@ -1,4 +1,4 @@
-import { Container, Grid, Heading, Box } from "@chakra-ui/react";
+import { Container, Grid, Heading } from "@chakra-ui/react";
 import { NavBar } from "../../layout/NavBar";
 import { Path } from "@/utils/urlHelper";
 import { useFetchMints, FetchMintsParams } from "@/api/useFetchMints";

@@ -3,7 +3,6 @@ import { Box, Text, VStack, HStack, Collapse } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Path } from "@/utils/urlHelper";
 import { FetchTokenParams, useFetchToken } from "@/api/useFetchToken";
-import { SkeletonText } from "@chakra-ui/react";
 import { shortenAddress } from "@/utils/web3Helper";
 import CardInfoText from "@/components/ui/CardInfoText";
 

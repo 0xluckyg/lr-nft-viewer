@@ -92,7 +92,7 @@ function Order({
 
   const { mutate, isLoading: isCreateTakerOrderLoading } = useCreateTakeOrder({
     id: order.id,
-    onSuccess: (data: ContractReceipt) => {
+    onSuccess: () => {
       showToast({
         colorScheme: "cyan",
         title: "Successful",

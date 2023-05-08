@@ -4,9 +4,10 @@ import { switchToDefaultChain, shortenAddress } from "@/utils/web3Helper";
 
 import { useWalletConnectorDialog } from "./WalletConnectorModal";
 import Button from "@/components/ui/Buttons";
+import { CSSProperties } from "react";
 
 interface Props {
-  style?: Object;
+  style?: CSSProperties;
   callback?: () => void;
 }
 

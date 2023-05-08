@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useMemo, useState } from "react";
+import React, { ReactNode, useCallback, useState } from "react";
 
 import Modal from "@/components/ui/Modal";
 
@@ -24,10 +24,10 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
     setIsOpen(true);
   }, []);
 
-  const value = useMemo(() => ({ isOpen, close, open }), [isOpen, close, open]);
+  // const value = useMemo(() => ({ isOpen, close, open }), [isOpen, close, open]);
 
   return (
-    <ModalContext.Provider value={value}>
+    <ModalContext.Provider value={{ isOpen, close, open }}>
       <>
         {children}
         <Modal isOpen={isOpen} onClose={close}>

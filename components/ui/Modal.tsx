@@ -1,5 +1,4 @@
 import {
-  useTheme,
   Modal as ModalComponent,
   ModalOverlay,
   ModalContent,
@@ -16,7 +15,6 @@ interface Props {
 }
 
 export default function Modal({ children, isOpen, onClose }: Props) {
-  const { colors } = useTheme();
   return (
     <ModalComponent onClose={onClose} isOpen={isOpen} isCentered>
       <ModalOverlay />

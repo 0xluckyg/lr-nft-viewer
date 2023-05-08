@@ -17,8 +17,7 @@ export function useWalletConnectorDialog() {
 
 function WalletConnectorModal({ onClose }: { onClose: () => void }) {
   const { colors } = useTheme();
-  const { activate, deactivate, active, account, chainId, error } =
-    useWeb3React();
+  const { activate, deactivate, active, chainId, error } = useWeb3React();
 
   const isChainValid = active
     ? isSupportedChain(chainId)
