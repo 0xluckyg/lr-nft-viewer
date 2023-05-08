@@ -37,13 +37,15 @@ export const chains: Record<number, Chain> = {
     },
     blockExplorerUrl: 'https://etherscan.io',
   },
-  [ChainId.RINKEBY_TESTNET]: {
-    chainId: ChainId.RINKEBY_TESTNET,
-    chainName: 'Rinkeby',
-    rpcUrls: ['https://rinkeby.infura.io/v3/'],
+  [ChainId.GOERLI_TESTNET]: {
+    chainId: ChainId.GOERLI_TESTNET,
+    chainName: 'Goerli',
+    rpcUrls: [
+      `https://goerli.infura.io/v3/${process.env.NEXT_PUBLIC_ETHEREUM_INFURA_ID}`,
+    ],
     nativeCurrency: {
       name: 'ETH',
-      symbol: 'RinkebyETH',
+      symbol: 'GoerliETH',
       decimals: 18,
     },
     blockExplorerUrl: 'https://etherscan.io',
