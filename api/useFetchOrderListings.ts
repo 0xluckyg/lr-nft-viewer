@@ -1,21 +1,22 @@
-import { useQuery } from 'react-query'
+import { useInfiniteQuery, useQuery } from 'react-query'
 import { looksrareClient } from './apiClients'
 import { TokenCard } from '@/types/Token'
 
 export type FetchOrderListingsParams = {
-  cursor: string
   collectionAddress: string
+  eventId: string
 }
 
 const QUERY_KEY = ['OrderListings']
-const limit = 30
+const limit = 100
 
 const fetchOrderListings = async (
   params: FetchOrderListingsParams,
 ): Promise<Array<TokenCard>> => {
-  const { cursor, collectionAddress } = params
+  console.log('FETCH: ', params)
+  const { collectionAddress, eventId } = params
   const { data } = await looksrareClient.get(
-    `v2/events?collection=${collectionAddress}&type=LIST&pagination%5Bfirst%5D=${limit}&pagination%5Bcursor%5D=${cursor}`,
+    `v2/events?collection=${collectionAddress}&type=LIST&pagination%5Bfirst%5D=${limit}&pagination%5Bcursor%5D=${eventId}`,
   )
   const tokens = data.data.map(
     (orderListing: { id: string; token: TokenCard }) => {
@@ -42,9 +43,17 @@ const fetchOrderListings = async (
   return tokens
 }
 
-export const useFetchOrderListings = (params: FetchOrderListingsParams) => {
-  return useQuery<Array<TokenCard>, Error>(
+export const useFetchOrderListings = (params: {
+  collectionAddress: string
+}) => {
+  return useInfiniteQuery<Array<TokenCard>, Error>(
     params.collectionAddress && [...QUERY_KEY, ...Object.values(params)],
-    () => fetchOrderListings(params),
+    ({ pageParam = '' }) =>
+      fetchOrderListings({ ...params, eventId: pageParam }),
+    {
+      getNextPageParam: (lastPage) => {
+        return lastPage[lastPage.length - 1]?.eventId || ''
+      },
+    },
   )
 }

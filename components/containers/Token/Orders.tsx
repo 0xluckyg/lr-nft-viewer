@@ -34,7 +34,6 @@ export default function Orders() {
   } as FetchAskOrdersParams);
 
   const LoadingSkeleton = () => <Skeleton height="20px" width="100%" my={2} />;
-
   return (
     <Box bgColor="white" boxShadow="xl" borderRadius="lg" mt={4} p={6}>
       <Text fontWeight="bold">Ask Orders</Text>
@@ -47,8 +46,8 @@ export default function Orders() {
             <LoadingSkeleton />
             <LoadingSkeleton />
           </>
-        ) : !askOrders?.length ? (
-          "No ask price"
+        ) : askOrders?.length === 0 ? (
+          <Text>No ask price</Text>
         ) : (
           askOrders?.map((order, index) => (
             <Order order={order} hasDivider={index < askOrders.length - 1} />
