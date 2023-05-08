@@ -1,10 +1,9 @@
 import type { AppProps } from "next/app";
 import { Web3ReactProvider } from "@web3-react/core";
 import { getLibrary } from "@/utils/web3Helper";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Web3Manager } from "@/providers/Web3Manager";
-import { extendTheme } from "@chakra-ui/react";
 import { ModalProvider } from "@/hooks/useModal";
 import Head from "next/head";
 //Chakra UI setup
