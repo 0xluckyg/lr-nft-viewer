@@ -10,9 +10,24 @@ import {
 } from '@/constants/chains'
 import { Web3Provider } from '@ethersproject/providers'
 import { getAddress } from '@ethersproject/address'
-import { ethers } from 'ethers'
+import { isClient } from '@/utils/envHelper'
 
 const defaultChain = getChain(DEFAULT_CHAIN_ID)
+
+interface CustomError extends Error {
+  code: number
+}
+
+interface CustomWindow extends Window {
+  ethereum?: {
+    request: (args: any) => Promise<any>
+  }
+}
+
+// Use customWindow in place of window if in browser environment
+const customWindow: CustomWindow = isClient()
+  ? window
+  : ((null as unknown) as CustomWindow)
 
 export function getLibrary(provider: any): Web3Provider {
   const library = new Web3Provider(
@@ -30,12 +45,15 @@ export function getLibrary(provider: any): Web3Provider {
 export async function switchToDefaultChain() {
   try {
     const formattedChainId = `0x${defaultChain.chainId.toString(16)}`
-    await window['ethereum'].request({
+    await customWindow.ethereum?.request({
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: formattedChainId }],
     })
   } catch (error) {
-    if (error.code === 4902 || error.code === -32603) {
+    if (
+      (error as CustomError).code === 4902 ||
+      (error as CustomError).code === -32603
+    ) {
       await addChain()
     }
   }
@@ -55,7 +73,7 @@ export async function switchChain(
       })
     }
   } catch (switchError) {
-    if (switchError.code == 4902) {
+    if ((switchError as CustomError).code == 4902) {
       try {
         await provider.request?.({
           method: 'wallet_addEthereumChain',
@@ -76,7 +94,7 @@ export async function switchChain(
 
 async function addChain() {
   try {
-    await window['ethereum'].request({
+    await customWindow.ethereum?.request({
       method: 'wallet_addEthereumChain',
       params: [
         {
