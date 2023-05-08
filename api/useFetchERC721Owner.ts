@@ -1,4 +1,3 @@
-import { DEFAULT_CHAIN_ID, getChain } from '@/constants/chains'
 import { getProvider } from '@/utils/web3Helper'
 import { ethers } from 'ethers'
 import { useQuery } from 'react-query'
