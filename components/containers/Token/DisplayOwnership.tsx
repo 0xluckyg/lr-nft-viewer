@@ -5,15 +5,15 @@ import {
 } from "@/api/useFetchERC721Owner";
 
 import CardInfoText from "@/components/ui/CardInfoText";
-import { Path } from "@/utils/urlHelper";
 import React from "react";
 import WalletConnectButton from "@/components/ui/WalletConnectButton";
+import { getAll } from "@/utils/urlHelper";
 import { shortenAddress } from "@/utils/web3Helper";
 import { useWeb3React } from "@web3-react/core";
 
 export default function DisplayOwnership() {
-  const { collectionAddress, tokenId } = Path.getAll();
   const { active, account } = useWeb3React();
+  const { collectionAddress, tokenId } = getAll();
 
   const {
     data: erc721Owner,

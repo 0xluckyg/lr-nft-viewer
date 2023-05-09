@@ -10,7 +10,9 @@ interface ModalContext {
 
 export const ModalContext = React.createContext<ModalContext>({
   isOpen: false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   close: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   open: () => {},
 });
 

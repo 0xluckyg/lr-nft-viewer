@@ -1,6 +1,6 @@
-import { useQuery } from 'react-query'
-import { looksrareClient } from './apiClients'
 import { Token } from '@/types/Token'
+import { looksrareClient } from './apiClients'
+import { useQuery } from 'react-query'
 
 export type FetchTokenParams = {
   collectionAddress: string

@@ -1,6 +1,6 @@
-import { useQuery } from 'react-query'
-import { looksrareClient } from './apiClients'
 import { Maker } from '@looksrare/sdk-v2'
+import { looksrareClient } from './apiClients'
+import { useQuery } from 'react-query'
 
 type Signature = {
   signature: string

@@ -12,7 +12,6 @@ interface Props {
 
 function WalletConnectButton({ style, callback }: Props) {
   const { account, active, error } = useWeb3React();
-
   const connectWallet = useWalletConnectorDialog();
 
   if (active) {

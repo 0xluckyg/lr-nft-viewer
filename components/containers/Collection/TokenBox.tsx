@@ -6,15 +6,16 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function TokenBox({ token }: { token: TokenCard }) {
-  const { push } = useRouter();
-
-  function goToToken(collectionAddress: string, tokenId: string) {
-    push(`/${collectionAddress}/${tokenId}`);
-  }
-
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  const { push } = useRouter();
   const { collectionAddress, description, tokenId, eventId, name, imageURI } =
     token;
+
+  const goToToken = (collectionAddress: string, tokenId: string): void => {
+    push(`/${collectionAddress}/${tokenId}`);
+  };
+
   return (
     <Box
       bg="white"

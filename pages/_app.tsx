@@ -51,6 +51,8 @@ const client = new QueryClient({
   },
 });
 
+console.log("EV: ", process.env.NODE_ENV);
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>

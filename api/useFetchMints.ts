@@ -1,6 +1,6 @@
-import { useInfiniteQuery } from 'react-query'
-import { looksrareClient } from './apiClients'
 import { TokenCard } from '@/types/Token'
+import { looksrareClient } from './apiClients'
+import { useInfiniteQuery } from 'react-query'
 
 export type FetchMintsParams = {
   collectionAddress: string

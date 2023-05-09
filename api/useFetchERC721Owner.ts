@@ -1,5 +1,5 @@
-import { getProvider } from '@/utils/web3Helper'
 import { ethers } from 'ethers'
+import { getProvider } from '@/utils/web3Helper'
 import { useQuery } from 'react-query'
 
 export type FetchERC721OwnerParams = {

@@ -2,12 +2,12 @@ import { Container, Grid, Heading } from "@chakra-ui/react";
 import { FetchMintsParams, useFetchMints } from "@/api/useFetchMints";
 
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Path } from "@/utils/urlHelper";
 import TokenBox from "./TokenBox";
 import TokenBoxSkeleton from "./TokenBoxSkeleton";
+import { getAll } from "@/utils/urlHelper";
 
 export default function Collection() {
-  const { collectionAddress } = Path.getAll();
+  const { collectionAddress } = getAll();
 
   const {
     data: tokenPages,

@@ -4,12 +4,12 @@ import React, { useState } from "react";
 
 import CardInfoText from "@/components/ui/CardInfoText";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Path } from "@/utils/urlHelper";
+import { getAll } from "@/utils/urlHelper";
 import { shortenAddress } from "@/utils/web3Helper";
 
 export default function TokenDetail() {
-  const { collectionAddress, tokenId } = Path.getAll();
   const [showTokenDetail, setShowTokenDetail] = useState(false);
+  const { collectionAddress, tokenId } = getAll();
 
   const {
     data: token,
@@ -20,7 +20,7 @@ export default function TokenDetail() {
     tokenId,
   } as FetchTokenParams);
 
-  const handleTokenDetailToggle = () => {
+  const handleTokenDetailToggle = (): void => {
     setShowTokenDetail(!showTokenDetail);
   };
 

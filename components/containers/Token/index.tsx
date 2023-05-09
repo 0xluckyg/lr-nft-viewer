@@ -16,15 +16,14 @@ import { FetchTokenParams, useFetchToken } from "@/api/useFetchToken";
 import React, { useState } from "react";
 
 import DisplayOwnership from "./DisplayOwnership";
-import { NavBar } from "../../layout/NavBar";
 import Orders from "./Orders";
-import { Path } from "@/utils/urlHelper";
 import Properties from "./Properties";
 import TokenDetail from "./TokenDetail";
+import { getAll } from "@/utils/urlHelper";
 
 export default function TokenPage() {
-  const { collectionAddress, tokenId } = Path.getAll();
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { collectionAddress, tokenId } = getAll();
 
   const {
     data: token,

@@ -16,14 +16,14 @@ import {
 import { MutationError, useCreateTakeOrder } from "@/api/useCreateTakerOrder";
 
 import Button from "@/components/ui/Buttons";
-import { Path } from "@/utils/urlHelper";
 import React from "react";
+import { getAll } from "@/utils/urlHelper";
 import { getTimeFromNow } from "@/utils/timeHelper";
 import useAppToast from "@/hooks/useToast";
 import { useWeb3React } from "@web3-react/core";
 
 export default function Orders() {
-  const { collectionAddress, tokenId } = Path.getAll();
+  const { collectionAddress, tokenId } = getAll();
 
   const {
     data: askOrders,
@@ -77,20 +77,6 @@ function Order({
   const { account, library } = useWeb3React();
   const showToast = useAppToast();
 
-  function getErrorMessage(code: string) {
-    switch (code) {
-      case TakerOrderErrorCodeTypes.ACTION_REJECTED: {
-        return "Buy cancelled";
-      }
-      case TakerOrderErrorCodeTypes.INSUFFICIENT_FUNDS: {
-        return "Your size is not size";
-      }
-      default: {
-        return "Please try again later";
-      }
-    }
-  }
-
   const { mutate, isLoading: isCreateTakerOrderLoading } = useCreateTakeOrder({
     id: order.id,
     onSuccess: () => {
@@ -111,14 +97,29 @@ function Order({
     },
   });
 
-  function executeOrder(): void {
+  const executeOrder = (): void => {
     if (!account) return;
     mutate({
       makerOrder: order,
       recipientAddress: account,
       signer: library.getSigner(),
     });
-  }
+  };
+
+  const getErrorMessage = (code: string) => {
+    switch (code) {
+      case TakerOrderErrorCodeTypes.ACTION_REJECTED: {
+        return "Buy cancelled";
+      }
+      case TakerOrderErrorCodeTypes.INSUFFICIENT_FUNDS: {
+        return "Your size is not size";
+      }
+      default: {
+        return "Please try again later";
+      }
+    }
+  };
+
   return (
     <React.Fragment key={order.id}>
       <HStack width="100%" justifyContent="space-between">

@@ -4,11 +4,11 @@ import React, { useState } from "react";
 
 import { Attribute } from "@/types/Token";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Path } from "@/utils/urlHelper";
+import { getAll } from "@/utils/urlHelper";
 
 export default function Properties() {
-  const { collectionAddress, tokenId } = Path.getAll();
   const [showProperties, setShowProperties] = useState(false);
+  const { collectionAddress, tokenId } = getAll();
 
   const {
     data: token,
@@ -19,7 +19,7 @@ export default function Properties() {
     tokenId,
   } as FetchTokenParams);
 
-  const handlePropertyToggle = () => {
+  const handlePropertyToggle = (): void => {
     setShowProperties(!showProperties);
   };
 

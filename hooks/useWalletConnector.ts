@@ -32,13 +32,12 @@ export function useEagerConnect() {
     if (!isSupportedChain(chainId)) {
       deactivate()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chainId])
 
   return tried
 }
 
-export function useInactiveListener(suppress: boolean = false) {
+export function useInactiveListener(suppress = false) {
   const { active, error, activate, deactivate } = useWeb3React()
 
   useEffect((): any => {
@@ -79,6 +78,5 @@ export function useInactiveListener(suppress: boolean = false) {
         }
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, error, suppress, activate])
 }
