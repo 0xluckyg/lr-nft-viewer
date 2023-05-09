@@ -1,5 +1,4 @@
 import Router from 'next/router'
-
 import { isClient } from '@/utils/envHelper'
 
 export namespace Path {

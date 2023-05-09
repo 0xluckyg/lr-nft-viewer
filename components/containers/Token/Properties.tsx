@@ -1,9 +1,10 @@
+import { Box, Collapse, Grid, HStack, Skeleton, Text } from "@chakra-ui/react";
+import { FetchTokenParams, useFetchToken } from "@/api/useFetchToken";
 import React, { useState } from "react";
-import { Box, Text, HStack, Collapse, Grid, Skeleton } from "@chakra-ui/react";
+
+import { Attribute } from "@/types/Token";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Path } from "@/utils/urlHelper";
-import { FetchTokenParams, useFetchToken } from "@/api/useFetchToken";
-import { Attribute } from "@/types/Token";
 
 export default function Properties() {
   const { collectionAddress, tokenId } = Path.getAll();

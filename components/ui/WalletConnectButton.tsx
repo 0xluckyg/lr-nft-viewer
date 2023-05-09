@@ -1,10 +1,9 @@
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
+import { shortenAddress, switchToDefaultChain } from "@/utils/web3Helper";
 
-import { switchToDefaultChain, shortenAddress } from "@/utils/web3Helper";
-
-import { useWalletConnectorDialog } from "./WalletConnectorModal";
 import Button from "@/components/ui/Buttons";
 import { CSSProperties } from "react";
+import { useWalletConnectorDialog } from "./WalletConnectorModal";
 
 interface Props {
   style?: CSSProperties;

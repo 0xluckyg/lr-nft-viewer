@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import { useWeb3React } from '@web3-react/core'
-
 import { injected } from '@/connectors/connectors'
 import { isSupportedChain } from '@/constants/chains'
+import { useWeb3React } from '@web3-react/core'
 
 export function useEagerConnect() {
   const { activate, deactivate, active, chainId } = useWeb3React()

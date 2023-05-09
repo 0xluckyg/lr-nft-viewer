@@ -1,10 +1,10 @@
 import { Container, Grid, Heading } from "@chakra-ui/react";
-import { NavBar } from "../../layout/NavBar";
-import { Path } from "@/utils/urlHelper";
-import { useFetchMints, FetchMintsParams } from "@/api/useFetchMints";
-import TokenBoxSkeleton from "./TokenBoxSkeleton";
-import TokenBox from "./TokenBox";
+import { FetchMintsParams, useFetchMints } from "@/api/useFetchMints";
+
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Path } from "@/utils/urlHelper";
+import TokenBox from "./TokenBox";
+import TokenBoxSkeleton from "./TokenBoxSkeleton";
 
 export default function Collection() {
   const { collectionAddress } = Path.getAll();

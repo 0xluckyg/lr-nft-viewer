@@ -1,4 +1,4 @@
-import { useToast, UseToastOptions } from "@chakra-ui/react";
+import { UseToastOptions, useToast } from "@chakra-ui/react";
 
 const useAppToast = () => {
   const toast = useToast();

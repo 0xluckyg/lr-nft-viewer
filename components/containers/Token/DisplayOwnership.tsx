@@ -1,14 +1,15 @@
-import React from "react";
-import { Text, HStack, Box, Spacer } from "@chakra-ui/react";
-import { Path } from "@/utils/urlHelper";
-import { useWeb3React } from "@web3-react/core";
-import WalletConnectButton from "@/components/ui/WalletConnectButton";
+import { Box, HStack, Spacer, Text } from "@chakra-ui/react";
 import {
   FetchERC721OwnerParams,
   useFetchERC721Owner,
 } from "@/api/useFetchERC721Owner";
+
 import CardInfoText from "@/components/ui/CardInfoText";
+import { Path } from "@/utils/urlHelper";
+import React from "react";
+import WalletConnectButton from "@/components/ui/WalletConnectButton";
 import { shortenAddress } from "@/utils/web3Helper";
+import { useWeb3React } from "@web3-react/core";
 
 export default function DisplayOwnership() {
   const { collectionAddress, tokenId } = Path.getAll();

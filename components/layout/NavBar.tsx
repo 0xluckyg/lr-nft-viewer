@@ -1,8 +1,9 @@
-import { useTheme, Box, Flex, Image, Text, Spacer } from "@chakra-ui/react";
+import { Box, Flex, Image, Spacer, Text, useTheme } from "@chakra-ui/react";
+
 import Link from "next/link";
-import { useRouter } from "next/router";
 import WalletConnectButton from "../ui/WalletConnectButton";
 import { defaultCollectionAddress } from "@/constants/defaultCollectionAddress";
+import { useRouter } from "next/router";
 
 export function NavBar() {
   const { colors } = useTheme();

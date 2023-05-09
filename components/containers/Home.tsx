@@ -1,11 +1,11 @@
-import React from "react";
 import { Container, HStack, Heading, Text, VStack } from "@chakra-ui/react";
-import { CheckIcon } from "@chakra-ui/icons";
-import { motion } from "framer-motion";
-import { NavBar } from "../layout/NavBar";
+
 import Button from "@/components/ui/Buttons";
-import { useRouter } from "next/router";
+import { CheckIcon } from "@chakra-ui/icons";
+import React from "react";
 import { defaultCollectionAddress } from "@/constants/defaultCollectionAddress";
+import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 function Home() {
   const { push } = useRouter();

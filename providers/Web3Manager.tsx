@@ -1,14 +1,13 @@
+import { DEFAULT_CHAIN_ID, getChain } from "@/constants/chains";
 import React, { useEffect, useState } from "react";
-
-import { ExternalProvider } from "@ethersproject/providers";
-import { useWeb3React } from "@web3-react/core";
-
 import {
   useEagerConnect,
   useInactiveListener,
 } from "@/hooks/useWalletConnector";
-import { DEFAULT_CHAIN_ID, getChain } from "@/constants/chains";
+
+import { ExternalProvider } from "@ethersproject/providers";
 import { switchChain } from "@/utils/web3Helper";
+import { useWeb3React } from "@web3-react/core";
 
 export function Web3Manager({ children }: { children: React.ReactNode }) {
   const { connector, active, library, chainId } = useWeb3React();

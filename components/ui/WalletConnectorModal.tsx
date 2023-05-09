@@ -1,12 +1,13 @@
-import { useCallback } from "react";
-import { useTheme } from "@chakra-ui/react";
-import { useModal } from "@/hooks/useModal";
-import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
+import { Box, Image, Text, VStack } from "@chakra-ui/react";
+import Button, { TextButton } from "@/components/ui/Buttons";
+import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
+
 import { injected } from "@/connectors/connectors";
 import { isSupportedChain } from "@/constants/chains";
 import { switchToDefaultChain } from "@/utils/web3Helper";
-import { Image, Box, Text, VStack } from "@chakra-ui/react";
-import Button, { TextButton } from "@/components/ui/Buttons";
+import { useCallback } from "react";
+import { useModal } from "@/hooks/useModal";
+import { useTheme } from "@chakra-ui/react";
 
 export function useWalletConnectorDialog() {
   const { open, close } = useModal();

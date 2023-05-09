@@ -1,12 +1,14 @@
-import type { AppProps } from "next/app";
-import { Web3ReactProvider } from "@web3-react/core";
-import { getLibrary } from "@/utils/web3Helper";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { Web3Manager } from "@/providers/Web3Manager";
-import { ModalProvider } from "@/hooks/useModal";
+
+import type { AppProps } from "next/app";
 import Head from "next/head";
+import { ModalProvider } from "@/hooks/useModal";
 import { NavBar } from "@/components/layout/NavBar";
+import { Web3Manager } from "@/providers/Web3Manager";
+import { Web3ReactProvider } from "@web3-react/core";
+import { getLibrary } from "@/utils/web3Helper";
+
 //Chakra UI setup
 const theme = extendTheme({
   colors: {

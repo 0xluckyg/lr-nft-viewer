@@ -1,13 +1,14 @@
 import {
-  ExternalProvider,
-  StaticJsonRpcProvider,
-} from '@ethersproject/providers'
-import {
   Chain,
   DEFAULT_CHAIN_ID,
   getChain,
   getNetworkURI,
 } from '@/constants/chains'
+import {
+  ExternalProvider,
+  StaticJsonRpcProvider,
+} from '@ethersproject/providers'
+
 import { Web3Provider } from '@ethersproject/providers'
 import { getAddress } from '@ethersproject/address'
 import { isClient } from '@/utils/envHelper'

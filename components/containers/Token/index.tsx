@@ -1,25 +1,26 @@
-// pages/token.tsx
-import React, { useState } from "react";
 import {
+  AspectRatio,
   Box,
-  Image,
+  Container,
   Flex,
-  Text,
   Grid,
   GridItem,
-  Container,
-  VStack,
-  AspectRatio,
+  Image,
   Skeleton,
   SkeletonText,
+  Text,
+  VStack,
 } from "@chakra-ui/react";
-import { NavBar } from "../../layout/NavBar";
-import { Path } from "@/utils/urlHelper";
-import Orders from "./Orders";
-import TokenDetail from "./TokenDetail";
-import Properties from "./Properties";
 import { FetchTokenParams, useFetchToken } from "@/api/useFetchToken";
+// pages/token.tsx
+import React, { useState } from "react";
+
 import DisplayOwnership from "./DisplayOwnership";
+import { NavBar } from "../../layout/NavBar";
+import Orders from "./Orders";
+import { Path } from "@/utils/urlHelper";
+import Properties from "./Properties";
+import TokenDetail from "./TokenDetail";
 
 export default function TokenPage() {
   const { collectionAddress, tokenId } = Path.getAll();

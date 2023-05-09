@@ -1,6 +1,7 @@
+import { chains, getChain } from '@/constants/chains'
+
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
-import { chains, getChain } from '@/constants/chains'
 
 // Add all the supported chains.
 export const injected = new InjectedConnector({

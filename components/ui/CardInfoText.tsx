@@ -1,5 +1,6 @@
+import { HStack, Text } from "@chakra-ui/react";
+
 import React from "react";
-import { Text, HStack } from "@chakra-ui/react";
 import { SkeletonText } from "@chakra-ui/react";
 
 export default function CardInfoText({
