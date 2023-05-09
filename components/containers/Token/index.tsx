@@ -35,81 +35,75 @@ export default function TokenPage() {
   } as FetchTokenParams);
 
   return (
-    <>
-      <NavBar />
-      <Container maxW="container.xl" py={10}>
-        <Grid
-          templateColumns={{ base: "repeat(1, 1fr)", md: "3fr 4fr" }}
-          gap={6}
-        >
-          <GridItem>
-            <Box
-              borderRadius="lg"
-              boxShadow="xl"
-              overflow="hidden"
-              w="100%"
-              maxW="1000px"
-            >
-              <AspectRatio ratio={1}>
-                <Skeleton isLoaded={imageLoaded}>
-                  <Image
-                    src={token?.imageURI || ""}
-                    alt={token?.name}
-                    objectFit="cover"
-                    onLoad={() => setImageLoaded(true)}
-                  />
-                </Skeleton>
-              </AspectRatio>
-            </Box>
-            <Properties />
-            <TokenDetail />
-          </GridItem>
+    <Container maxW="container.xl" py={10}>
+      <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "3fr 4fr" }} gap={6}>
+        <GridItem>
+          <Box
+            borderRadius="lg"
+            boxShadow="xl"
+            overflow="hidden"
+            w="100%"
+            maxW="1000px"
+          >
+            <AspectRatio ratio={1}>
+              <Skeleton isLoaded={imageLoaded}>
+                <Image
+                  src={token?.imageURI || ""}
+                  alt={token?.name}
+                  objectFit="cover"
+                  onLoad={() => setImageLoaded(true)}
+                />
+              </Skeleton>
+            </AspectRatio>
+          </Box>
+          <Properties />
+          <TokenDetail />
+        </GridItem>
 
-          <GridItem>
-            <Flex direction="column" height="100%" gap={3} p={6}>
-              <VStack alignItems="start">
-                <SkeletonText
-                  skeletonHeight={8}
-                  minW={300}
-                  isLoaded={!isTokenLoading && !isTokenError}
-                  noOfLines={1}
-                >
-                  <Text fontSize="3xl" fontWeight="bold">
-                    {token?.name || "--"}
-                  </Text>
-                </SkeletonText>
-                <SkeletonText
-                  skeletonHeight={5}
-                  isLoaded={!isTokenLoading && !isTokenError}
-                  noOfLines={1}
-                >
-                  <Text>{token?.description}</Text>
-                </SkeletonText>
-                <SkeletonText
-                  skeletonHeight={5}
-                  isLoaded={!isTokenLoading && !isTokenError}
-                  noOfLines={1}
-                >
-                  <Text>
-                    <b>Address:</b> {collectionAddress}
-                  </Text>{" "}
-                </SkeletonText>
-                <SkeletonText
-                  skeletonHeight={5}
-                  isLoaded={!isTokenLoading && !isTokenError}
-                  noOfLines={1}
-                >
-                  <Text>
-                    <b>TokenId:</b> {tokenId}
-                  </Text>{" "}
-                </SkeletonText>
-              </VStack>
-              <DisplayOwnership />
-              <Orders />
-            </Flex>
-          </GridItem>
-        </Grid>
-      </Container>
-    </>
+        <GridItem>
+          <Flex direction="column" height="100%" gap={3} p={6}>
+            <VStack alignItems="start">
+              <SkeletonText
+                skeletonHeight={8}
+                minW={300}
+                isLoaded={!isTokenLoading && !isTokenError}
+                noOfLines={1}
+              >
+                <Text fontSize="3xl" fontWeight="bold">
+                  {token?.name || "--"}
+                </Text>
+              </SkeletonText>
+              <SkeletonText
+                skeletonHeight={5}
+                isLoaded={!isTokenLoading && !isTokenError}
+                noOfLines={1}
+              >
+                <Text>{token?.description}</Text>
+              </SkeletonText>
+              <SkeletonText
+                skeletonHeight={5}
+                isLoaded={!isTokenLoading && !isTokenError}
+                noOfLines={1}
+              >
+                <Text>
+                  <b>Address:</b> {collectionAddress}
+                </Text>{" "}
+              </SkeletonText>
+              <SkeletonText
+                skeletonHeight={5}
+                isLoaded={!isTokenLoading && !isTokenError}
+                noOfLines={1}
+              >
+                <Text>
+                  <b>TokenId:</b> {tokenId}
+                </Text>{" "}
+              </SkeletonText>
+            </VStack>
+            <DisplayOwnership />
+            <Orders />
+          </Flex>
+        </GridItem>
+      </Grid>
+    </Container>
   );
 }

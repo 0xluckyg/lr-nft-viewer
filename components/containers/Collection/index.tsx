@@ -25,30 +25,27 @@ export default function Collection() {
   });
 
   return (
-    <>
-      <NavBar />
-      <Container maxW="container.xl" py={12}>
-        <Heading mb={8}>NFT Collection</Heading>
+    <Container maxW="container.xl" py={12}>
+      <Heading mb={8}>NFT Collection</Heading>
 
-        <InfiniteScroll
-          dataLength={tokens?.length || 0}
-          next={fetchNextTokens}
-          hasMore={!!hasNextPage}
-          loader={<></>}
-          endMessage={<></>}
-        >
-          <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={8}>
-            {tokensIsLoading || isFetchingNextTokens || isTokensError
-              ? Array(12)
-                  .fill(0)
-                  .map((_, index) => <TokenBoxSkeleton key={index} />)
-              : tokens &&
-                tokens.map((token, i) => {
-                  return <TokenBox key={token.tokenId + i} token={token} />;
-                })}
-          </Grid>
-        </InfiniteScroll>
-      </Container>
-    </>
+      <InfiniteScroll
+        dataLength={tokens?.length || 0}
+        next={fetchNextTokens}
+        hasMore={!!hasNextPage}
+        loader={<></>}
+        endMessage={<></>}
+      >
+        <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={8}>
+          {tokensIsLoading || isFetchingNextTokens || isTokensError
+            ? Array(12)
+                .fill(0)
+                .map((_, index) => <TokenBoxSkeleton key={index} />)
+            : tokens &&
+              tokens.map((token, i) => {
+                return <TokenBox key={token.tokenId + i} token={token} />;
+              })}
+        </Grid>
+      </InfiniteScroll>
+    </Container>
   );
 }

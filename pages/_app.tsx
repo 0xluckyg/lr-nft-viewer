@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Web3Manager } from "@/providers/Web3Manager";
 import { ModalProvider } from "@/hooks/useModal";
 import Head from "next/head";
+import { NavBar } from "@/components/layout/NavBar";
 //Chakra UI setup
 const theme = extendTheme({
   colors: {
@@ -61,6 +62,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Web3ReactProvider getLibrary={getLibrary}>
             <Web3Manager>
               <ModalProvider>
+                <NavBar />
                 <Component {...pageProps} />
               </ModalProvider>
             </Web3Manager>
