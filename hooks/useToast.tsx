@@ -1,6 +1,6 @@
 import { UseToastOptions, useToast } from "@chakra-ui/react";
 
-const useAppToast = () => {
+function useAppToast(): (options: UseToastOptions) => void {
   const toast = useToast();
 
   const showAppToast = (options: UseToastOptions) => {
@@ -14,6 +14,6 @@ const useAppToast = () => {
   };
 
   return showAppToast;
-};
+}
 
 export default useAppToast;

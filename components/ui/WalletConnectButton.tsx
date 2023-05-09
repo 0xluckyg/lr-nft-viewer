@@ -3,14 +3,14 @@ import { shortenAddress, switchToDefaultChain } from "@/utils/web3Helper";
 
 import Button from "@/components/ui/Buttons";
 import { CSSProperties } from "react";
-import { useWalletConnectorDialog } from "./WalletConnectorModal";
+import { useWalletConnectorDialog } from "@/hooks/useWalletConnectorDialog";
 
 interface Props {
   style?: CSSProperties;
   callback?: () => void;
 }
 
-function WalletConnectButton({ style, callback }: Props) {
+function WalletConnectButton({ style, callback }: Props): JSX.Element {
   const { account, active, error } = useWeb3React();
   const connectWallet = useWalletConnectorDialog();
 

@@ -21,7 +21,7 @@ import Properties from "./Properties";
 import TokenDetail from "./TokenDetail";
 import { getAll } from "@/utils/urlHelper";
 
-export default function TokenPage() {
+export default function TokenPage(): JSX.Element {
   const [imageLoaded, setImageLoaded] = useState(false);
   const { collectionAddress, tokenId } = getAll();
 

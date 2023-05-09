@@ -5,7 +5,7 @@ import WalletConnectButton from "../ui/WalletConnectButton";
 import { defaultCollectionAddress } from "@/constants/defaultCollectionAddress";
 import { useRouter } from "next/router";
 
-export function NavBar() {
+export function NavBar(): JSX.Element {
   const { colors } = useTheme();
   const { push } = useRouter();
 

@@ -2,13 +2,13 @@ import React, { ReactNode, useCallback, useState } from "react";
 
 import Modal from "@/components/ui/Modal";
 
-interface ModalContext {
+export interface ModalContextInterface {
   isOpen: boolean;
   close: () => void;
   open: (children: ReactNode) => void;
 }
 
-export const ModalContext = React.createContext<ModalContext>({
+export const ModalContext = React.createContext<ModalContextInterface>({
   isOpen: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   close: () => {},

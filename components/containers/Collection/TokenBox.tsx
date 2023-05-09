@@ -5,7 +5,7 @@ import { TokenCard } from "@/types/Token";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function TokenBox({ token }: { token: TokenCard }) {
+export default function TokenBox({ token }: { token: TokenCard }): JSX.Element {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const { push } = useRouter();

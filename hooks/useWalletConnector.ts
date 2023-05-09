@@ -4,7 +4,7 @@ import { injected } from '@/connectors/connectors'
 import { isSupportedChain } from '@/constants/chains'
 import { useWeb3React } from '@web3-react/core'
 
-export function useEagerConnect() {
+export function useEagerConnect(): boolean {
   const { activate, deactivate, active, chainId } = useWeb3React()
 
   const [tried, setTried] = useState(false)
@@ -37,7 +37,7 @@ export function useEagerConnect() {
   return tried
 }
 
-export function useInactiveListener(suppress = false) {
+export function useInactiveListener(suppress = false): void {
   const { active, error, activate, deactivate } = useWeb3React()
 
   useEffect((): any => {

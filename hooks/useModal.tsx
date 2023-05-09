@@ -1,7 +1,8 @@
-import { ModalContext } from "@/providers/ModalContext";
+import { ModalContext, ModalContextInterface } from "@/providers/ModalContext";
+
 import React from "react";
 
-export function useModal() {
+export function useModal(): ModalContextInterface {
   return React.useContext(ModalContext);
 }
 

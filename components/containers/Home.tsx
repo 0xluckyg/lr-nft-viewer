@@ -7,7 +7,7 @@ import { defaultCollectionAddress } from "@/constants/defaultCollectionAddress";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
-function Home() {
+function Home(): JSX.Element {
   const { push } = useRouter();
 
   return (

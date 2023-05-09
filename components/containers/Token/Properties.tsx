@@ -6,7 +6,7 @@ import { Attribute } from "@/types/Token";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { getAll } from "@/utils/urlHelper";
 
-export default function Properties() {
+export default function Properties(): JSX.Element {
   const [showProperties, setShowProperties] = useState(false);
   const { collectionAddress, tokenId } = getAll();
 

@@ -12,7 +12,7 @@ To run it on Goerli:
 yarn dev-testnet
 ```
 
-## File structure
+## Folder structure
 
     .
     ├── api

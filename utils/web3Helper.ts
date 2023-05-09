@@ -43,7 +43,7 @@ export function getLibrary(provider: any): Web3Provider {
   return library
 }
 
-export async function switchToDefaultChain() {
+export async function switchToDefaultChain(): Promise<void> {
   try {
     const formattedChainId = `0x${defaultChain.chainId.toString(16)}`
     await customWindow.ethereum?.request({
@@ -64,7 +64,7 @@ export async function switchChain(
   provider: ExternalProvider,
   chainId: number,
   chainInfo: Chain,
-) {
+): Promise<void> {
   const formattedChainId = `0x${chainId.toString(16)}`
   try {
     if (provider) {
@@ -93,7 +93,7 @@ export async function switchChain(
   }
 }
 
-async function addChain() {
+async function addChain(): Promise<void> {
   try {
     await customWindow.ethereum?.request({
       method: 'wallet_addEthereumChain',

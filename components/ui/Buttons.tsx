@@ -6,7 +6,7 @@ interface CustomButtonProps extends ButtonProps {
   disabled?: boolean;
 }
 
-export default function CustomButton(props: CustomButtonProps) {
+export default function CustomButton(props: CustomButtonProps): JSX.Element {
   const { colors } = useTheme();
 
   return (

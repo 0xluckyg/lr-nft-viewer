@@ -11,7 +11,7 @@ export default function CardInfoText({
   value: string | undefined;
   label: string;
   isLoading: boolean;
-}) {
+}): JSX.Element {
   return (
     <HStack w="100%" display="flex" justifyContent="space-between">
       <Text fontWeight="bold">{label}:</Text>

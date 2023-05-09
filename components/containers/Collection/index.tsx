@@ -6,7 +6,7 @@ import TokenBox from "./TokenBox";
 import TokenBoxSkeleton from "./TokenBoxSkeleton";
 import { getAll } from "@/utils/urlHelper";
 
-export default function Collection() {
+export default function Collection(): JSX.Element {
   const { collectionAddress } = getAll();
 
   const {

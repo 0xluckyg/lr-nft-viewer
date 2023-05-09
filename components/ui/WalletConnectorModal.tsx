@@ -5,18 +5,13 @@ import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { injected } from "@/connectors/connectors";
 import { isSupportedChain } from "@/constants/chains";
 import { switchToDefaultChain } from "@/utils/web3Helper";
-import { useCallback } from "react";
-import { useModal } from "@/hooks/useModal";
 import { useTheme } from "@chakra-ui/react";
 
-export function useWalletConnectorDialog() {
-  const { open, close } = useModal();
-  return useCallback(() => {
-    open(<WalletConnectorModal onClose={close} />);
-  }, [open, close]);
-}
-
-function WalletConnectorModal({ onClose }: { onClose: () => void }) {
+export default function WalletConnectorModal({
+  onClose,
+}: {
+  onClose: () => void;
+}): JSX.Element {
   const { colors } = useTheme();
   const { activate, deactivate, active, chainId, error } = useWeb3React();
 

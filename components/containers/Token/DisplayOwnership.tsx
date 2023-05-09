@@ -11,7 +11,7 @@ import { getAll } from "@/utils/urlHelper";
 import { shortenAddress } from "@/utils/web3Helper";
 import { useWeb3React } from "@web3-react/core";
 
-export default function DisplayOwnership() {
+export default function DisplayOwnership(): JSX.Element {
   const { active, account } = useWeb3React();
   const { collectionAddress, tokenId } = getAll();
 

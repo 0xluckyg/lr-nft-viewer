@@ -7,7 +7,6 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { ContractReceipt, ethers } from "ethers";
 import {
   FetchAskOrdersParams,
   MakerOrder,
@@ -17,12 +16,13 @@ import { MutationError, useCreateTakeOrder } from "@/api/useCreateTakerOrder";
 
 import Button from "@/components/ui/Buttons";
 import React from "react";
+import { ethers } from "ethers";
 import { getAll } from "@/utils/urlHelper";
 import { getTimeFromNow } from "@/utils/timeHelper";
 import useAppToast from "@/hooks/useToast";
 import { useWeb3React } from "@web3-react/core";
 
-export default function Orders() {
+export default function Orders(): JSX.Element {
   const { collectionAddress, tokenId } = getAll();
 
   const {
@@ -73,7 +73,7 @@ function Order({
 }: {
   order: MakerOrder;
   hasDivider: boolean;
-}) {
+}): JSX.Element {
   const { account, library } = useWeb3React();
   const showToast = useAppToast();
 

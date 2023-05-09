@@ -14,7 +14,11 @@ interface Props {
   onClose: () => void;
 }
 
-export default function Modal({ children, isOpen, onClose }: Props) {
+export default function Modal({
+  children,
+  isOpen,
+  onClose,
+}: Props): JSX.Element {
   return (
     <ModalComponent onClose={onClose} isOpen={isOpen} isCentered>
       <ModalOverlay />

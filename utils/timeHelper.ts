@@ -1,10 +1,10 @@
-import moment from 'moment'
+import moment, { Moment } from 'moment'
 
-export function getTimeFromNow(time: number) {
-  const expiryMoment = moment.unix(time)
-  const currentTime = moment()
+export function getTimeFromNow(time: number): string {
+  const expiryMoment: Moment = moment.unix(time)
+  const currentTime: Moment = moment()
 
-  const isAfter = expiryMoment.isAfter(currentTime)
+  const isAfter: boolean = expiryMoment.isAfter(currentTime)
 
   return `${moment.duration(expiryMoment.diff(currentTime)).humanize()} ${
     isAfter ? 'from now' : 'ago'

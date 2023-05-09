@@ -7,7 +7,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { getAll } from "@/utils/urlHelper";
 import { shortenAddress } from "@/utils/web3Helper";
 
-export default function TokenDetail() {
+export default function TokenDetail(): JSX.Element {
   const [showTokenDetail, setShowTokenDetail] = useState(false);
   const { collectionAddress, tokenId } = getAll();
 

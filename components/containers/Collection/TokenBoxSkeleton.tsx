@@ -1,6 +1,6 @@
 import { Box, Skeleton } from "@chakra-ui/react";
 
-export default function TokenBoxSkeleton() {
+export default function TokenBoxSkeleton(): JSX.Element {
   return (
     <Box
       bg="white"
