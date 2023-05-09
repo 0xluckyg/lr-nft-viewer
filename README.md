@@ -30,7 +30,7 @@ yarn dev-testnet
     │   ├── layout              # Components that define the layout of the app such as the navigation bar
     │   └── ui                  # Reusable components such as buttons and modals
     ├── connectors              # Contains web3-react InjectedConnector for using Metamask provider
-    ├── constants               # Constant variables such as ChainIDs
+    ├── constants               # Constant variables such as ChainIDs and style
     ├── hooks                   # Reusable hooks
     ├── providers               # Providers that wrap the whole or some parts of the application
     ├── pages                   # App directories
