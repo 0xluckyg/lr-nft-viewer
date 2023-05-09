@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { ModalProvider } from "@/hooks/useModal";
+import { ModalProvider } from "@/providers/ModalContext";
 import { NavBar } from "@/components/layout/NavBar";
 import { Web3Manager } from "@/providers/Web3Manager";
 import { Web3ReactProvider } from "@web3-react/core";
@@ -50,8 +50,6 @@ const client = new QueryClient({
     },
   },
 });
-
-console.log("EV: ", process.env.NODE_ENV);
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
